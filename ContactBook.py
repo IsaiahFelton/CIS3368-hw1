@@ -52,7 +52,19 @@ contacts = execute_read_query(connection, select_contacts)
 print(" Menu \n","a - Add contact \n","d - Remove contact \n","u - Update contact details \n","b - Output all contacts in alphebetical order\n","c - Output all contacts by creation date \n", "o - output all contacts \n","q - Quit ")
 value = input("choose and option: \n")
 
+# Asking user for contact details and giving the user the creation dat of the newly added contact
+if value == "a":
+    contactDetails = input("Enter First Name: \n")
+    creationDate = date.today()
+    
+    print("You created",contactDetails,"on",creationDate)
+    addContact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s','%s')" % (contactDetails, creationDate)
+    execute_query(connection, addContact)
+
+
 # Printing all contacts in the contacts table to the console
 if value == "o":
     for contact in contacts:
         print(contact)
+
+
