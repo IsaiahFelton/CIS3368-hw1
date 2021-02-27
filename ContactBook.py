@@ -48,3 +48,7 @@ connection = create_connection("cis3368v5.cwb2r4cwyvi9.us-east-2.rds.amazonaws.c
 select_contacts = "SELECT * FROM contacts"
 contacts = execute_read_query(connection, select_contacts)
 
+# Menu interface 
+print(" Menu \n","a - Add contact \n","d - Remove contact \n","u - Update contact details \n","b - Output all contacts in alphebetical order\n","c - Output all contacts by creation date \n", "o - output all contacts \n","q - Quit ")
+value = input("choose and option: \n")
+
