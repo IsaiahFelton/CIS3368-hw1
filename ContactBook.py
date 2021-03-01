@@ -48,8 +48,7 @@ connection = create_connection("cis3368v5.cwb2r4cwyvi9.us-east-2.rds.amazonaws.c
 select_contacts = "SELECT * FROM contacts"
 contacts = execute_read_query(connection, select_contacts)
 
-select_creationDate = "SELECT  * FROM contacts WHERE "
-creationDate = execute_read_query(connection, select_creationDate)
+
 
 # Menu interface 
 print(" Menu \n","a - Add contact \n","d - Remove contact \n","u - Update contact details \n","b - Output all contacts in alphebetical order\n","c - Output all contacts by creation date \n", "o - output all contacts \n","q - Quit ")
@@ -64,7 +63,7 @@ if value == "a":
     addContact = "INSERT INTO contacts (contactDetails, creationDate) VALUES ('%s','%s')" % (contactDetails, creationDate)
     execute_query(connection, addContact)
 
-# Deleting a user from the contacts table in MySql
+
 
 
 # Updating a user in the contacts table in MySql
@@ -86,14 +85,9 @@ if value == "u":
 if value == "d":   
     for contact in contacts:
         print(contact)
-    deleteDetails = int(input("Enter id of person thats to be deleted: "))
-    deleteUser = "DELETE FROM contacts WHERE id = %s" % (deleteDetails)
+    deleteDetails = input("Enter id of the person thats to be deleted: ")
+    deleteUser = "DELETE FROM contacts WHERE id = '%s'" % (deleteDetails)
     execute_query(connection, deleteUser)
-
-# Output all contacts from the contacts table by creation date
-if value == "c":
-    print(creationDate)
-
 
 
 # Printing all contacts in the contacts table to the console
@@ -101,4 +95,10 @@ if value == "o":
     for contact in contacts:
         print(contact)
 
+# Outputting all contacts in alphbetical order
+if value =="b":
+    select_contactDetails = "SELECT * FROM contacts ORDER BY contactDetails" #used ORDER BY to sort the names in my contactDetails column
+    contactDetails = execute_read_query(connection, select_contactDetails)
+    for DetailsOfContact in contactDetails:
+        print(DetailsOfContact[1])
 
