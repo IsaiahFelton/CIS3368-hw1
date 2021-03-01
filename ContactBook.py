@@ -52,7 +52,7 @@ contacts = execute_read_query(connection, select_contacts)
 # Menu interface
 while True:
     print(" Menu \n","a - Add contact \n","d - Remove contact \n","u - Update contact details \n","b - Output all contacts in alphebetical order\n","c - Output all contacts by creation date \n", "o - output all contacts \n","q - Quit ")
-    value = input("choose and option: ")
+    value = input("choose an option: ")
 
 # Asking user for contact details and giving the user the creation dat of the newly added contact
     if value == "a":
@@ -69,7 +69,7 @@ while True:
         for contact in contacts:
             print(contact)
         deleteDetails = input("Enter id of the person thats to be deleted: ")
-        deleteUser = "DELETE FROM contacts WHERE id = '%s'" % (deleteDetails)
+        deleteUser = "DELETE FROM contacts WHERE id = '%s'" % (deleteDetails) #Using the DELETE function to remove a contact by id
         execute_query(connection, deleteUser)
         continue
 
@@ -82,7 +82,7 @@ while True:
         updateDetails_query = """   
         UPDATE contacts
         SET contactDetails = '%s'
-        WHERE id = %s """ % (updateDetails, updatedDetails)   
+        WHERE id = %s """ % (updateDetails, updatedDetails) #Used UPDATE function that took string values for contactDetails and updated the contact by id
         execute_query(connection, updateDetails_query)                            
         continue
 
@@ -109,6 +109,7 @@ while True:
             print(contact)
         continue
 
+# Break function 
     if value == "q":
         break
     
